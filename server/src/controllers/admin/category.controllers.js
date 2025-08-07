@@ -33,9 +33,10 @@ const createCategory = async (req, res) => {
         error: "Category already exists",
       });
     }
-
+  
     return res.json({ success: false, error: "something went wrong!" });
   }
+
 };
 
 const updateCategory = async (req, res) => {

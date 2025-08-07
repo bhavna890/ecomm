@@ -1,3 +1,5 @@
+const {getProfileDB} = require("../../services/users/profile.services")
+
 const getProfile = async (req, res) => {
   const { id } = req.user;
 

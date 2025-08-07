@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const { connectDB } = require("./src/config/db");
 const userRoutes = require("./src/routes/users");
 const adminRoutes = require("./src/routes/admin");
@@ -13,6 +14,7 @@ const PORT = 4000;
 
 connectDB();
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
