@@ -64,7 +64,7 @@ const Dialog = ({ id, product, categories, update, open, onClose }) => {
   };
 
   useEffect(() => {
-    setFormState({ ...product, category: product.category._id });
+    setFormState({ ...product, category: product.category?._id });
   }, [product]);
 
   return (

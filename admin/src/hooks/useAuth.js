@@ -18,7 +18,7 @@ export const useAuth = () => {
                     });
 
                     const data = await res.json();
-                    if(data.success){
+                    if(data.success || data.data.role === "admin"){
                         setUser(data.data);
                     }else{
                         throw new Error();

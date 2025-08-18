@@ -4,6 +4,7 @@ import withAuth from "../component/withAuth";
 import DeleteProduct from "../dialogs/DeleteProduct";
 import AddProduct from "../dialogs/AddProduct";
 import EditProduct from "../dialogs/EditProduct";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -11,22 +12,25 @@ const Products = () => {
   const [loading, setLoading] = useState(true);
   // const [deleteProduct, setDeleteProduct] = useState(null);
 
+
   const addProduct = (newProduct) => {
     setProducts([...data, { ...newProduct, category: categories.find((c) => c._id === newProduct.category) }]);
   };
   
   const updateProduct = (id, newData) => {
-    setData(
-      data.map((product) => {
+    setProducts(
+      products.map((product) => {
         if (product._id === id) {
           return { ...product, ...newData, category: categories.find((c) => c._id === newData.category) };
         }
         return product;
       })
     );
+
+    
   };
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
@@ -98,7 +102,7 @@ const Products = () => {
                   <th className="px-4 py-2">TITLE</th>
                   <th className="px-4 py-2">DESCRIPTION</th>
                   <th className="px-4 py-2">CATEGORY</th>
-                  <th className="px-4 py-2">PRICE / MRP</th>
+                  <th className="px-4 py-2 whitespace-nowrap">PRICE / MRP</th>
                   <th className="px-4 py-2">STOCK</th>
                   <th className="px-4 py-2">ACTIONS</th>
                 </tr>
@@ -106,15 +110,12 @@ const Products = () => {
               <tbody>
                 {products.map((product) => (
                   <tr key={product._id} className="border-t hover:bg-gray-50">
-                    <td className="px-4 py-2">{product.title}</td>
-                    <td className="px-4 py-2">{product.description}</td>
-                    <td className="px-4 py-2">{product.category}</td>
-                    <td className="px-4 py-2">${product.price + " / " + product.mrp}</td>
+                    <td className="px-4 py-2"> <Link to={`/product/${product.slug}`} className="line-clamp-2">{product.title}</Link></td>
+                    <td className="px-4 py-2 pb-0 line-clamp-2">{product.description}</td>
+                    <td className="px-4 py-2">{product.category?.name || "_"}</td>
+                    <td className="px-4 py-2 whitespace-nowrap">₹{product.price + " / " + product.mrp}</td>
                     <td className="px-4 py-2">{product.stock || 0}</td>
-                    <td className="px-4 py-2 space-x-2">
-                       </td>
-                     
-                       <td className="flex gap-2 px-6 py-4 text-sm text-gray-500">
+                    <td className="px-4 py-2 flex gap-2">
                     <EditProduct id={product._id} product={product} categories={categories} update={updateProduct} />
                     <DeleteProduct id={product._id} remove={deleteProduct} />
                   </td>

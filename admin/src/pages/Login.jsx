@@ -97,5 +97,4 @@ const InputBox = ({value, update, type, placeholder}) => {
 
 export default Login;
 
-// react costom hook
-// hof in js hoc in react
+

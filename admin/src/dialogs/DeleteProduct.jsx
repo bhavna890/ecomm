@@ -32,9 +32,10 @@ const Dialog = ({ id, remove, open, onClose }) => {
         },
       });
       const data = await res.json();
+      console.log(data);
 
       if (!data.success) {
-        alert(data.error || "failed to delte product!");
+        alert(data.error || "failed to delete product!");
         return;
       }
 
@@ -81,73 +82,6 @@ const Dialog = ({ id, remove, open, onClose }) => {
 
 export default DeleteProduct;
 
-// import React, { useState } from "react";
 
-// const DeleteProduct = ({ productId, onClose, onDeleted }) => {
-//   const [loading, setLoading] = useState(false);
-
-//   const handleDelete = async () => {
-//     try {
-//       setLoading(true);
-//       const url = import.meta.env.VITE_SERVER_URL;
-
-//       const res = await fetch(`${url}/admin/product/${productId}`, {
-//         method: "DELETE",
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization: `Bearer ${localStorage.getItem("token")}`,
-//         },
-//       });
-
-//       const contentType = res.headers.get("content-type");
-//       if (contentType && contentType.includes("application/json")) {
-//         const data = await res.json();
-
-//         if (!data.success) {
-//           alert(data.error || "Failed to delete product.");
-//           return;
-//         }
-
-//         onDeleted(productId);
-//         onClose();
-//       } else {
-//         const errorText = await res.text();
-//         console.error("Non-JSON response:", errorText);
-//         alert("Unexpected response from server.");
-//       }
-//     } catch (error) {
-//       console.error("Delete error:", error);
-//       alert("Failed to delete product.");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-//       <div className="bg-white rounded p-6 w-[300px]">
-//         <h2 className="text-lg font-semibold mb-4">Confirm Delete</h2>
-//         <p className="text-sm mb-6">Are you sure you want to delete this product?</p>
-//         <div className="flex justify-end space-x-3">
-//           <button
-//             onClick={onClose}
-//             className="px-3 py-1 text-sm rounded bg-gray-300 hover:bg-gray-400"
-//           >
-//             Cancel
-//           </button>
-//           <button
-//             onClick={handleDelete}
-//             disabled={loading}
-//             className="px-3 py-1 text-sm rounded bg-red-500 text-white hover:bg-red-600 disabled:opacity-50"
-//           >
-//             {loading ? "Deleting..." : "Delete"}
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DeleteProduct;
 
 

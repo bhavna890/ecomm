@@ -20,6 +20,7 @@ const AddProduct = ({ add, categories }) => {
 };
 
 const Dialog = ({ add,categories, open, onclose }) => {
+  const [loading, setLoading] = React.useState(false);
   const [form, setForm] = React.useState({
     title: '',
     description: '',
@@ -27,11 +28,9 @@ const Dialog = ({ add,categories, open, onclose }) => {
     mrp: 0,
     rating: 0,
     stock: 0,
-    category: 0,
-    images: [],
+    category: "",
   });
 
-  const [loading, setLoading] = React.useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -77,13 +76,11 @@ const Dialog = ({ add,categories, open, onclose }) => {
         mrp: 0,
         rating: 0,
         stock: 0,
-        category: 0,
-        images: [],
+        category: '',
       });
       onclose();
     } catch (error) {
       console.error(error);
-      alert('Failed to create product.');
     } finally {
       setLoading(false);
     }
@@ -121,13 +118,13 @@ const Dialog = ({ add,categories, open, onclose }) => {
             <div className='flex flex-col gap-1'>
               <label className="text-sm">Title</label>
               <input className='w-full rounded border text-sm border-green-300 p-1'
-                type='text' placeholder='Enter the title'
+                type='text' placeholder='Enter the title' name='title'
                 value={form.title} onChange={handleChange}/>
             </div>
             <div className='flex flex-col gap-1'>
               <label className="text-sm">Description</label>
               <textarea className='w-full rounded border text-sm border-green-300 p-1'
-                type='text' placeholder='Enter the description' 
+                type='text' placeholder='Enter the description'name='description' 
                   value={form.description}
                 onChange={handleChange}/>
             </div>
@@ -135,7 +132,7 @@ const Dialog = ({ add,categories, open, onclose }) => {
               <div className='w-full'>
                 <label className="text-sm">Price</label>
                 <input className='w-full rounded border text-sm border-green-300 p-1'
-                  type='number' placeholder='Enter the price'
+                  type='number' placeholder='Enter the price' name='price'
                    value={form.price}
                   onChange={handleChange} />
               </div>
@@ -143,7 +140,7 @@ const Dialog = ({ add,categories, open, onclose }) => {
                 <div className='w-full'>
                   <label className="text-sm">MRP</label>
                   <input className='w-full rounded border text-sm border-green-300 p-1'
-                    type='number' placeholder='Enter the mrp' 
+                    type='number' placeholder='Enter the mrp' name='mrp' 
                      value={form.mrp}
                   onChange={handleChange} />
                 </div>
@@ -152,14 +149,14 @@ const Dialog = ({ add,categories, open, onclose }) => {
                <div className='w-full'>
               <label className="text-sm">Stock</label>
               <input className='w-full rounded border text-sm border-green-300 p-1'
-              type='number' placeholder='Enter the stock'
+              type='number' placeholder='Enter the stock' name ="stock"
                value={form.stock}
                   onChange={handleChange}/>
             </div>
               <div className='w-full'>
                   <label className="text-sm">Rating</label>
                   <input className='w-full rounded border text-sm border-green-300 p-1'
-                    type='number' placeholder='Enter the rating'  
+                    type='number' placeholder='Enter the rating' name='rating' 
                      value={form.rating}
                   onChange={handleChange}/>
                 </div>

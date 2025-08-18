@@ -14,6 +14,10 @@ export default tseslint.config([
       tseslint.configs.recommended,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
+          {
+        "no-unused-vars": "warn",
+        "@typescript-eslint/no-unused-vars": "error",
+      },
     ],
     languageOptions: {
       ecmaVersion: 2020,
