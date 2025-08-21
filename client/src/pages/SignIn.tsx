@@ -1,5 +1,5 @@
 import React from "react";
-import { cn, url } from "@/lib/utils";
+import { cn} from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -35,6 +35,8 @@ function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
 
     try {
       setLoading(true);
+
+      const url = import.meta.env.VITE_SERVER_URL;
       const res = await fetch(`${url}/auth/login`, {
         method: "POST",
         headers: {
@@ -125,3 +127,11 @@ function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export default withAuth(SignIn, false);
+
+
+// ek function create kerna haii jisse product copy ho jaye without images
+// rating 5 se jayda na ho 1 se kam na ho
+// image ka size kam ho jaye search in cloudinary
+
+
+
