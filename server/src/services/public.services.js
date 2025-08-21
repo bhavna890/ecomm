@@ -1,8 +1,19 @@
 const category = require("../models/category");
+const Image = require("../models/images");
 const Product = require("../models/product");
  
 const getAllProductsDB = async () => {
-  return await Product.find({}).select("title slug images").populate("category");
+  let products = await Product.find({}).select("title slug price mrp category").lean();
+  for (const e of products){
+    const images= await Image.find({product_id: e._id}).limit(1);
+    if (images.length === 0){
+       e.images = [{ url: "https://www.svgrepo.com/show/508699/landscape-placeholder.svg" }];
+      continue;
+    }
+    e.images = images;
+    }
+  
+  return products;
 };
 
 const getAllCategoriesDB = async () => {
@@ -20,7 +31,11 @@ const getProductsByCategoryDB = async (slug) => {
 };
 
 const getProductBySlugDB = async (slug) => {
-  return await Product.findOne({ slug }).populate("category");
+  const product = await Product.findOne({ slug }).populate("category");
+  // console.log(product);
+  const images = await Image.find({product_id: product._id});
+  // console.log(images);
+  return {...product._doc, images};
 };
 
 module.exports = { getAllProductsDB, getAllCategoriesDB, getProductsByCategoryDB, getProductBySlugDB };
