@@ -1,4 +1,6 @@
 const { verify } = require("jsonwebtoken");
+const Cart = require("../../models/cart");
+const WishList = require("../../models/wishlist");
 const { registerUser, findUserByEmail } = require("../../services/users/auth.services");
 const { generateToken, hashPassword, verifyPassword } = require("../../utils");
 
@@ -77,7 +79,7 @@ const login = async (req, res) => {
 
     // generate token
     const { accessToken, refreshToken } = generateToken({
-      id: user._id,
+      id: user.id,
       name: user.name,
       email: user.email,
       role: user.role,

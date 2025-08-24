@@ -17,6 +17,6 @@ router.get("/categories", getAllCategories);
 router.get("/products/:category", getProductsByCategory);
 
 // product details
-router.get("/products/:slug",getProductBySlug);
+router.get("/product/:slug",getProductBySlug);
  
 module.exports = router;

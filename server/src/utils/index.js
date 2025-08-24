@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const generateSlug = (name) => {
-  return name.toLowerCase().trim().replace(/\s+/g, "-");
+return name.toLowerCase().trim().replace(/\s+/g, "-").replaceAll("|", "").replaceAll("&", "");
 };
 
 const generateToken = (data) => {

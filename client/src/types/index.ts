@@ -30,3 +30,14 @@ export interface IUser {
   name: string;
   role: string;
 }
+
+export interface ICart {
+  _id?: string;
+  quantity: number;
+  item: IProduct | string;
+}
+
+export interface IWishlist {
+  _id?: string;
+  item: IProduct | string;
+}

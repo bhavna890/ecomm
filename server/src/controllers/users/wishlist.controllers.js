@@ -2,7 +2,9 @@ const { addWLItemDB, getWLItemsDB, deleteWLItemDB, deleteAllWLItemsDB } = requir
 
 
 const getWLItems = async(req, res) => {
+
     try {
+        //  console.log(">>> user.id:", req.user?.id);
         const data = await getWLItemsDB(req.user.id);
         return res.json({success:true, data});
     } catch (error) {
@@ -14,9 +16,13 @@ const getWLItems = async(req, res) => {
         return res.json({success:false, error:"All fields are required"});
     }
     try {
+        //  console.log(">>> user.id:", req.user.id);
+    console.log(">>> body.item:", req.body.item);
         const  data = await addWLItemDB(req.user.id, req.body.item);
           return res.json({ success: true, data });
     } catch (error) {
+        // console.error("Error in addWLItem:", error);
+
         return res.json({success:false, error:"something went wrong!"})
         
     }

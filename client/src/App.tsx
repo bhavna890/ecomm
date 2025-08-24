@@ -7,6 +7,7 @@ import Orders from "./pages/Orders";
 import SignUp from "./pages/SignUp";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
+import Wishlist from "./pages/Wishlist";
 const App = () => {
   // return <div>Hello Client</div>;
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:slug" element={<ProductDetails />} /> 
+        <Route path="/wishlist" element={<Wishlist/>} />
         <Route path="/products/:category" element={<Products />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/signin" element={<SignIn />} />

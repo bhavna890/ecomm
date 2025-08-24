@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     const payload = verifyToken(token);
 
-    if(!payload.id){
+    if(!payload._id){
       return res.json({
         success:false,
         error:"invalid token",

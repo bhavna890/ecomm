@@ -4,7 +4,7 @@ const addressRoutes = require("./address.routes");
 const cartRoutes = require("./cart.routes");
 const { getProfile } = require("../../controllers/users/profile.controllers");
 
-const router = express.Router();
+const  router = express.Router();
 
 router.get("/me", getProfile);
 
